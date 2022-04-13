@@ -54,7 +54,12 @@
     right: 24px;
     top: 24px;
     border: none;
-    /*box-shadow: 0 0 2px 2px #262626;*/
+    cursor:pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.button-off:hover{
+    box-shadow: 0 0 8px 2px #F54B3D;
 }
 
 .main-top-control{
@@ -64,12 +69,13 @@
     height: 100%;
 }
 
-.main-bottom-row{
+.main-top-row{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.main-bottom-row.main-bottom-row--center{
+.main-top-row.main-top-row--center{
     justify-content: center;
 }
 
@@ -81,12 +87,20 @@
 
 }
 
+
 .button-arrow-icon-top{
     width: 0px;
     height: 0px;
     border-left: 16px solid transparent;
     border-right: 16px solid transparent;
     border-bottom: 24px solid #444444;
+    cursor:pointer;
+    transition: border 0.3s ease;
+}
+
+
+.button-arrow-icon-top:hover {
+    border-bottom: 24px solid #ffffff;
 }
 
 .button-arrow-icon-left{
@@ -95,6 +109,12 @@
     border-top: 16px solid transparent;
     border-bottom: 16px solid transparent;
     border-right: 24px solid #444444;
+    cursor: pointer;
+    transition: border 0.3s ease;
+}
+
+.button-arrow-icon-left:hover{
+    border-right: 24px solid #ffffff;
 }
 
 .button-arrow-icon-right{
@@ -103,6 +123,12 @@
     border-top: 16px solid transparent;
     border-bottom: 16px solid transparent;
     border-left: 24px solid #444444;
+    cursor: pointer;
+    transition: border 0.3s ease;
+}
+
+.button-arrow-icon-right:hover{
+    border-left-color: white;
 }
 
 .button-arrow-icon-bottom{
@@ -111,16 +137,29 @@
     border-left: 16px solid transparent;
     border-right: 16px solid transparent;
     border-top: 24px solid #444444;
+    cursor: pointer;
+    transition: border 0.3s ease;
+}
+
+.button-arrow-icon-bottom:hover{
+    border-top: 24px solid #ffffff
 }
 
 .button-text{
-    height: 40px;
-    width: 40px;
+    height: 80px;
+    width: 80px;
     background: none;
     border: 0;
+    border-radius: 50%;
     color: white;
     font-size: 24px;
     font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button-text:hover {
+    background: #444444;
 }
 
 .main-bottom{
@@ -154,6 +193,12 @@
     border-radius: 40px;
     background: #4B4B4B;
     box-shadow: 0 0 5px 5px #262626;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button-double:hover{
+    background: #1E1E1E;
 }
 
 .button-double .button{
@@ -175,8 +220,13 @@
     height: 80px;
     margin-bottom: 20px;
     box-shadow: 0 0 5px 5px #262626;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
+.button:hover{
+    background: #1E1E1E;
+}
 
 .button.button--last{
     margin: 0;
