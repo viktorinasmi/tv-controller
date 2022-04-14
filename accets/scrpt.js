@@ -36,7 +36,15 @@ var buttonMainTurnup = document.getElementById("btn-main-turnup")
 var buttonMainTurndown = document.getElementById("btn-main-turndown")
 
 buttonPower.addEventListener("click", function (){
-    console.log("Вы нажали включение")
+    var style = getComputedStyle(buttonPower)
+    var red = "rgb(245, 75, 61)"
+    var green = "rgb(51, 211, 76)"
+    var redShadow = "rgb(245, 75, 61) 0px 0px 8px 2px"
+    var  greenShadow = "rgb(51, 211, 76) 0px 0px 8px 2px"
+
+    buttonPower.style.backgroundColor = style.backgroundColor === red ? green : red;
+    buttonPower.style.boxShadow = style.boxShadow === redShadow ? greenShadow : redShadow;
+
 })
 
 buttonArrowTop.addEventListener("click", function (){
