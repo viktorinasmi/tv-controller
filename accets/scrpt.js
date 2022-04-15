@@ -35,6 +35,19 @@ var buttonMainTurnup = document.getElementById("btn-main-turnup")
 //Кнопка убавления звука
 var buttonMainTurndown = document.getElementById("btn-main-turndown")
 
+// Основной фон
+var view = document.getElementById("view")
+
+// Фон кружочка
+var viewCircle = document.getElementById("view-circle")
+
+var defaultBackgroundColors = {
+    view: getBackgroundColorValue(view),
+    viewCircle: getBackgroundColorValue(viewCircle)
+}
+
+console.log(defaultBackgroundColors)
+
 buttonPower.addEventListener("click", function (){
     var style = getComputedStyle(buttonPower)
     var red = "rgb(245, 75, 61)"
@@ -49,22 +62,28 @@ buttonPower.addEventListener("click", function (){
 
 buttonArrowTop.addEventListener("click", function (){
     console.log("Вы нажали вверх")
+    backgroundStyling(circleBackgroundColors, viewCircle)
 })
 
 buttonArrowLeft.addEventListener("click", function (){
     console.log("Вы нажали влево")
+    backgroundStyling(bodyBackgroundColors, view)
 })
 
 buttonCenter.addEventListener("click", function (){
     console.log("Вы нажали на  ОК")
+   //TODO: реализовать изменение фонов на начальное значение
+    // backgroundStyling()
 })
 
 buttonArrowRight.addEventListener("click", function (){
     console.log("Вы нажали вправо")
+    backgroundStyling(bodyBackgroundColors,view )
 })
 
 buttonArrowBotton.addEventListener("click", function (){
     console.log("Вы нажали вниз")
+    backgroundStyling(circleBackgroundColors, viewCircle)
 })
 
 buttonMainBack.addEventListener("click",function (){
@@ -90,3 +109,31 @@ buttonMainTurnup.addEventListener("click", function (){
 buttonMainTurndown.addEventListener("click", function (){
     console.log("Вы убавили звук")
 })
+
+var bodyBackgroundColors = [
+    "rgb(79, 80, 81)",
+    "rgb(109, 106, 184)",
+    "rgb(117, 117, 133)",
+    "rgb(94, 82, 69)",
+    "rgb(133, 122, 117)"
+]
+
+var circleBackgroundColors = [
+    "rgba(19, 20, 22, 1)",
+    "rgba(95, 97, 99, 1)",
+    "rgba(76, 84, 99, 1)",
+    "rgba(99, 89, 66, 1)",
+    "rgba(23, 22, 20, 1)"
+]
+
+
+function backgroundStyling(arrayOfColors, element) {
+    var rand = Math.floor(Math.random() * arrayOfColors.length); //0-5
+    // var style = getComputedStyle(buttonPower)
+    element.style.backgroundColor = arrayOfColors[rand]
+}
+
+function getBackgroundColorValue(element){
+    var style = getComputedStyle(element)
+    return style.backgroundColor
+}
