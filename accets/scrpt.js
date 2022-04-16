@@ -10,7 +10,7 @@ var buttonElements = {
     buttonMainBack: document.getElementById("btn-main-back"), //Кнопка назад
     buttonMainSearch: document.getElementById("btn-main-search"), //Кнопка поиск
     buttonMainSetting: document.getElementById("btn-main-setting"), //Кнопка настройки
-    buttonMainVoice: document.getElementById("btn-main-voice"), //Кнопка микрофон
+    buttonMainVolumeOff: document.getElementById("btn-main-volume-off"), //Кнопка выключения звука
     buttonMainTurnup: document.getElementById("btn-main-turnup"), //Кнопка прибавление звука
     buttonMainTurndown: document.getElementById("btn-main-turndown"), //Кнопка убавления звука
 }
@@ -19,6 +19,8 @@ var buttonElements = {
 var mainElements = {
     view: document.getElementById("view"), // Основной фон
     viewCircle: document.getElementById("view-circle"), // Фон кружочка
+    volume: document.getElementById("volume"), //Блок громкости
+    volumeBar: document.getElementById("volume-bar"), // Полоска громкости
 }
 
 var defaultBackgroundColors = {
@@ -79,16 +81,19 @@ buttonElements.buttonMainSetting.addEventListener("click", function (){
     console.log("Вы нажали настройки")
 })
 
-buttonElements.buttonMainVoice.addEventListener("click", function (){
-    console.log("Вы нажали микрофон")
+buttonElements.buttonMainVolumeOff.addEventListener("click", function (){
+    console.log("Вы выключили звук")
+    volumeControls("volume-off")
 })
 
 buttonElements.buttonMainTurnup.addEventListener("click", function (){
     console.log("Вы прибавили звук")
+    volumeControls("volume-up")
 })
 
 buttonElements.buttonMainTurndown.addEventListener("click", function (){
     console.log("Вы убавили звук")
+    volumeControls("volume-down")
 })
 
 var bodyBackgroundColors = [
@@ -117,4 +122,23 @@ function backgroundStyling(arrayOfColors, element) {
 function getBackgroundColorValue(element){
     var style = getComputedStyle(element)
     return style.backgroundColor
+}
+// Изменяет значение полоски громкости
+function volumeControls(type){
+    var volumeBlockHeight = parseInt(getComputedStyle(mainElements.volume).height) //"140px" 140 - 100%
+    var volumeBarHeight = parseInt(getComputedStyle(mainElements.volumeBar).height) //"42px" 42 - x%
+    var x = volumeBarHeight * 100 / volumeBlockHeight
+
+    var step = 10 // шаг громкости
+    if (type === "volume-up"){
+        x = x+step > 100 ? 100 : x+step; //бинарный оператор
+    }
+    if (type === "volume-down"){
+        x -=step;
+    }
+    if (type === "volume-off"){
+        x = 0
+    }
+
+    mainElements.volumeBar.style.height = x +"%"
 }
