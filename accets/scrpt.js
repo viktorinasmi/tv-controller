@@ -19,6 +19,7 @@ var buttonElements = {
 var mainElements = {
     view: document.getElementById("view"), // Основной фон
     viewCircle: document.getElementById("view-circle"), // Фон кружочка
+    viewControls: document.getElementById("view-controls"), // Блок с громкостью
     volume: document.getElementById("volume"), //Блок громкости
     volumeBar: document.getElementById("volume-bar"), // Полоска громкости
 }
@@ -84,16 +85,19 @@ buttonElements.buttonMainSetting.addEventListener("click", function (){
 buttonElements.buttonMainVolumeOff.addEventListener("click", function (){
     console.log("Вы выключили звук")
     volumeControls("volume-off")
+    showVolumeControls()
 })
 
 buttonElements.buttonMainTurnup.addEventListener("click", function (){
     console.log("Вы прибавили звук")
     volumeControls("volume-up")
+    showVolumeControls()
 })
 
 buttonElements.buttonMainTurndown.addEventListener("click", function (){
     console.log("Вы убавили звук")
     volumeControls("volume-down")
+    showVolumeControls()
 })
 
 var bodyBackgroundColors = [
@@ -141,4 +145,13 @@ function volumeControls(type){
     }
 
     mainElements.volumeBar.style.height = x +"%"
+}
+
+function showVolumeControls(){
+    mainElements.viewControls.style.opacity = "1";
+    mainElements.viewControls.style.visibility = "visible";
+    setTimeout(function (){
+        mainElements.viewControls.style.opacity = "0";
+        mainElements.viewControls.style.visibility = "hidden";
+    }, 2000)
 }
