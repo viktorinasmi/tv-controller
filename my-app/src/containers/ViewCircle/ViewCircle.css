@@ -1,0 +1,14 @@
+.view-circle{
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    border: solid 4px #000000;
+    background: #131416;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 8px 0 #262626, inset 0 0 8px 0 #2e2e2e;
+    transition: background-color 0.3s ease;
+    transform: scale(1);
+}
+

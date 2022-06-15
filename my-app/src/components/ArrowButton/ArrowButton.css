@@ -1,0 +1,56 @@
+.button-arrow-icon-top{
+    width: 0px;
+    height: 0px;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 24px solid #444444;
+    cursor:pointer;
+    transition: border 0.3s ease;
+}
+
+
+.button-arrow-icon-top:hover {
+    border-bottom: 24px solid #ffffff;
+}
+
+.button-arrow-icon-left{
+    width: 0px;
+    height: 0px;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-right: 24px solid #444444;
+    cursor: pointer;
+    transition: border 0.3s ease;
+}
+
+.button-arrow-icon-left:hover{
+    border-right: 24px solid #ffffff;
+}
+
+.button-arrow-icon-right{
+    width: 0px;
+    height: 0px;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-left: 24px solid #444444;
+    cursor: pointer;
+    transition: border 0.3s ease;
+}
+
+.button-arrow-icon-right:hover{
+    border-left-color: white;
+}
+
+.button-arrow-icon-bottom{
+    width: 0px;
+    height: 0px;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 24px solid #444444;
+    cursor: pointer;
+    transition: border 0.3s ease;
+}
+
+.button-arrow-icon-bottom:hover{
+    border-top: 24px solid #ffffff
+}

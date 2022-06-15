@@ -1,6 +1,6 @@
 console.log("Файл загрузился");
 
-var buttonElements = {
+let buttonElements = {
     buttonPower: document.getElementById("btn-power"),  // Кнопка влючения/выключения
     buttonArrowTop: document.getElementById("btn-arrow-top"), // Кнопка вверх
     buttonArrowLeft: document.getElementById("btn-arrow-left"), // Кнопка влево
@@ -13,18 +13,24 @@ var buttonElements = {
     buttonMainVolumeOff: document.getElementById("btn-main-volume-off"), //Кнопка выключения звука
     buttonMainTurnup: document.getElementById("btn-main-turnup"), //Кнопка прибавление звука
     buttonMainTurndown: document.getElementById("btn-main-turndown"), //Кнопка убавления звука
+    buttonMenuSizeDown:document.getElementById("btn-menu-view-size-down"), // Кнопка уменьшения пульта
+    buttonMenuSizeUp:document.getElementById("btn-menu-view-size-up"), //Кнопка увеличения пульта
+    buttonMenuSizeCircleDown:document.getElementById("btn-menu-circle-size-down"), //Кнопка уменьшения подложки
+    buttonMenuSizeCircleUp:document.getElementById("btn-menu-circle-size-up"), //Кнопка увеличения подложки
 }
 
 
-var mainElements = {
+let mainElements = {
     view: document.getElementById("view"), // Основной фон
     viewCircle: document.getElementById("view-circle"), // Фон кружочка
+    viewMenu: document.getElementById("view-menu"), // Появление меню
     viewControls: document.getElementById("view-controls"), // Блок с громкостью
     volume: document.getElementById("volume"), //Блок громкости
     volumeBar: document.getElementById("volume-bar"), // Полоска громкости
+
 }
 
-var defaultBackgroundColors = {
+let defaultBackgroundColors = {
     view: getBackgroundColorValue(mainElements.view),
     viewCircle: getBackgroundColorValue(mainElements.viewCircle)
 }
@@ -32,11 +38,11 @@ var defaultBackgroundColors = {
 console.log(defaultBackgroundColors)
 
 buttonElements.buttonPower.addEventListener("click", function (){
-    var style = getComputedStyle(buttonElements.buttonPower)
-    var red = "rgb(245, 75, 61)"
-    var green = "rgb(51, 211, 76)"
-    var redShadow = "rgb(245, 75, 61) 0px 0px 8px 2px"
-    var  greenShadow = "rgb(51, 211, 76) 0px 0px 8px 2px"
+    let style = getComputedStyle(buttonElements.buttonPower),
+        red = "rgb(245, 75, 61)",
+        green = "rgb(51, 211, 76)",
+        redShadow = "rgb(245, 75, 61) 0px 0px 8px 2px",
+        greenShadow = "rgb(51, 211, 76) 0px 0px 8px 2px";
 
     buttonElements.buttonPower.style.backgroundColor = style.backgroundColor === red ? green : red;
     buttonElements.buttonPower.style.boxShadow = style.boxShadow === redShadow ? greenShadow : redShadow;
@@ -80,6 +86,7 @@ buttonElements.buttonMainSearch.addEventListener("click", function (){
 
 buttonElements.buttonMainSetting.addEventListener("click", function (){
     console.log("Вы нажали настройки")
+    pressMenu()
 })
 
 buttonElements.buttonMainVolumeOff.addEventListener("click", function (){
@@ -100,7 +107,26 @@ buttonElements.buttonMainTurndown.addEventListener("click", function (){
     showVolumeControls()
 })
 
-var bodyBackgroundColors = [
+buttonElements.buttonMenuSizeDown.addEventListener("click",function (){
+    console.log("Уменьшить пульт")
+    changeElementScaleSize("-",mainElements.view)
+})
+buttonElements.buttonMenuSizeUp.addEventListener("click",function (){
+    console.log("Увеличить пульт")
+    changeElementScaleSize("+",mainElements.view)
+})
+
+buttonElements.buttonMenuSizeCircleDown.addEventListener("click", function (){
+    console.log("Уменьшить подложку")
+    changeElementScaleSize("-",mainElements.viewCircle)
+})
+
+buttonElements.buttonMenuSizeCircleUp.addEventListener("click", function (){
+    console.log("Увеличить подложку")
+    changeElementScaleSize("+",mainElements.viewCircle)
+})
+
+let bodyBackgroundColors = [
     "rgb(79, 80, 81)",
     "rgb(109, 106, 184)",
     "rgb(117, 117, 133)",
@@ -108,7 +134,7 @@ var bodyBackgroundColors = [
     "rgb(133, 122, 117)"
 ]
 
-var circleBackgroundColors = [
+let circleBackgroundColors = [
     "rgba(19, 20, 22, 1)",
     "rgba(95, 97, 99, 1)",
     "rgba(76, 84, 99, 1)",
@@ -118,22 +144,22 @@ var circleBackgroundColors = [
 
 // Функция принимает массив цветов и перекрашивает фон у элемента
 function backgroundStyling(arrayOfColors, element) {
-    var rand = Math.floor(Math.random() * arrayOfColors.length); //0-5
+    let rand = Math.floor(Math.random() * arrayOfColors.length); //0-5
     element.style.backgroundColor = arrayOfColors[rand]
 }
 
 // Получаем элемент и возвращаем значение backgroundColor у элемента
 function getBackgroundColorValue(element){
-    var style = getComputedStyle(element)
+    let style = getComputedStyle(element)
     return style.backgroundColor
 }
 // Изменяет значение полоски громкости
 function volumeControls(type){
-    var volumeBlockHeight = parseInt(getComputedStyle(mainElements.volume).height) //"140px" 140 - 100%
-    var volumeBarHeight = parseInt(getComputedStyle(mainElements.volumeBar).height) //"42px" 42 - x%
-    var x = volumeBarHeight * 100 / volumeBlockHeight
+    let volumeBlockHeight = parseInt(getComputedStyle(mainElements.volume).height) //"140px" 140 - 100%
+    let volumeBarHeight = parseInt(getComputedStyle(mainElements.volumeBar).height) //"42px" 42 - x%
+    let x = volumeBarHeight * 100 / volumeBlockHeight
 
-    var step = 10 // шаг громкости
+    const step = 10 // шаг громкости
     if (type === "volume-up"){
         x = x+step > 100 ? 100 : x+step; //бинарный оператор
     }
@@ -155,3 +181,40 @@ function showVolumeControls(){
         mainElements.viewControls.style.visibility = "hidden";
     }, 2000)
 }
+
+function pressMenu(){
+    const viewMenuOpacity = getComputedStyle(mainElements.viewMenu).opacity
+
+    if (viewMenuOpacity === "0"){
+        mainElements.viewMenu.style.opacity = "1";
+        mainElements.viewMenu.style.visibility = "visible";
+    } else {
+        mainElements.viewMenu.style.opacity = "0";
+        mainElements.viewMenu.style.visibility = "hidden";
+    }
+}
+
+function changeElementScaleSize(action,element){
+    // var viewTransformScale = element.style.transform;
+    // var result = viewTransformScale === "" ? 1 : viewTransformScale
+    let viewTransformScale = element.style.transform || "scale(1)";
+    let result = parseFloat(viewTransformScale.replace("scale(", ""))
+
+    // if (typeof result === "string") {
+    //     result = parseFloat(result.replace("scale(", ""))
+    // }
+    console.log(result)
+
+    let step =0.25
+    if (action ==="+"){
+        result += step;
+    } else {
+        result -=step;
+    }
+
+    element.style.transform = `scale(${result})`
+}
+
+
+
+

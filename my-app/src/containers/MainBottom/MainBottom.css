@@ -1,0 +1,79 @@
+.main-bottom{
+    background: #383838;
+    display: flex;
+    padding: 40px;
+    height: 360px;
+    border-radius: 0 0 30px 30px;
+    overflow: hidden;
+    position: relative;
+    border: solid 4px #444444;
+    border-top: none;
+}
+
+.main-bottom-column{
+    flex-direction: column;
+}
+
+.main-bottom-column.main-bottom-column--left{
+    margin-right: 10px;
+}
+
+.main-bottom-column.main-bottom-column--right{
+    margin-left: 10px;
+}
+
+.button-arrow {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: 0;
+}
+
+.button-double{
+    width: 80px;
+    height: 180px;
+    border-radius: 40px;
+    background: #4B4B4B;
+    box-shadow: 0 0 5px 5px #262626;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button-double:hover{
+    background: #1E1E1E;
+}
+
+.button-double--small{
+    width: 80px;
+    height: 32px;
+    margin: 0 8px 0 0;
+    padding: 0;
+    display: flex;
+    box-shadow: 0 0 3px 3px #262626;
+}
+
+.button-double--small button{
+    width: 88px;
+    height: 32px;
+    margin: 0;
+}
+
+.button-double--small .button-label{
+    color: white;
+    display: flex;
+    align-content: space-between;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.button-double .button{
+    box-shadow: none;
+    background: none;
+}
+
+.button.button--large{
+    width: 80px;
+    height: 180px;
+    border-radius: 40px;
+}

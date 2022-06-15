@@ -1,0 +1,20 @@
+.button{
+    background: #4B4B4B;
+    border: 0;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 5px 5px #262626;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button:hover{
+    background: #1E1E1E;
+}
+
+.button.button--last{
+    margin: 0;
+}
+
